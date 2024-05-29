@@ -16,19 +16,27 @@
   --foot-size-subtitle: 42px;
   --font-size-2-3: 38px;
   --font-size-4-5: 30px;
-  --font-size-main: 25px;
-  --font-size-footer: 22px;
+  --font-size-main: 24px;
+  --font-size-footer: 16px;
   --font-size-page: 12px;
   --font-size-code: 22px;
 }
-
-
 
 section {
   font-family: var(--font-family-main);
   font-size: var(--font-size-main);
   color: var(--color-main);
   text-align: justify;
+  padding: 140px 78.5px 78.5px 78.5px;
+  background-image: url('./../AIlogo.png');
+  background-size: fixed;
+  background-repeat: no-repeat;
+  /* 确保 logo 图像不重复显示 */
+  background-position: top right;
+  /* 将 logo 图像放置在右上角 */
+  background-size: 100px 100px;
+  background-position: calc(100% - 25px) 25px;
+  /* 调整 logo 的位置 */
 }
 
 h1 {
@@ -43,6 +51,28 @@ h3 {
   font-family: var(--font-family-title);
   font-size: var(--font-size-2-3);
   color: var(--color-much);
+}
+
+h3 {
+  position: fixed;
+  top: 80px;
+  left: 50px;
+  z-index: 999;
+  width: 100%;
+}
+
+h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  /* 位于 h3 元素底部 */
+  left: 0;
+  width: 100%;
+  /* 横跨整个 h3 元素 */
+  height: 2px;
+  /* 设置线的高度 */
+  background-color: var(--color-much);
+  /* 线的颜色 */
 }
 
 h4,
@@ -96,22 +126,44 @@ ul li::marker {
 }
 
 blockquote {
-  border-left: 8px solid var(--color-much);
-  padding: 10px 25px;
-  border-radius: 8px;
-  background-color: var(--color-quote);
-  font-size: 0.9rem;
-  font-family: var(--font-family-main);
+  padding: 1%;
+  letter-spacing: 0px;
+  border-left: none;
+  background-color: white;
 }
 
-blockquote strong {
-  font-family: var(--font-family-main);
+blockquote p>strong {
+  color: var(--color-main);
+  font-size: 0.9rem;
 }
 
 blockquote>p::before {
-  color: var(--color-much);
+  padding-right: 0px;
+  content: "";
+  color: white;
+}
+
+blockquote>p:nth-child(1) {
+  margin-bottom: -1px;
+  line-height: 2rem;
+  padding: 0.5% 0.5% 0.5% 1.5%;
+  color: white;
+  font-size: 1.03rem;
+}
+
+
+blockquote>p:not(:nth-child(1)) {
+  padding: 1% 2%;
+  background-color: rgb(228, 234, 246);
+}
+
+blockquote>p:nth-child(1) {
+  background-color: var(--color-coverbg);
+}
+
+blockquote>p:nth-child(1)::before {
+  content: "\f0eb";
   padding-right: 2%;
-  content: "\f10d";
   font-family: "FontAwesome";
 }
 
@@ -447,7 +499,9 @@ section.cover_c {
 section.cover_c img {
   background-color: rgba(255, 255, 255, 0);
   background-blend-mode: lighten;
-  filter: brightness(0%) contrast(60%) grayscale(80%);
+  height: 8em;
+  width: auto;
+  object-fit: contain;
 }
 
 section.cover_c h1 {
@@ -490,9 +544,9 @@ section.cover_c header {
   background-color: rgba(255, 255, 255, 0);
   background-blend-mode: lighten;
   height: 100px;
-  width: 350px;
+  width: 800px;
   text-align: left;
-  padding: 0 4%;
+  padding: 0 0%;
 }
 
 section.cover_d {
@@ -661,7 +715,6 @@ section.toc_b img {
   background-blend-mode: lighten;
   padding-top: 30px;
   width: 70%;
-  filter: brightness(500%) grayscale(100%);
 }
 
 section.fglass ul {
@@ -980,17 +1033,12 @@ section.cols-2 {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 10% 90%;
   grid-template-areas:
     "slideheading slideheading"
     "leftpanel    rightpanel";
 }
 
-section.cols-2 h2,
-section.cols-2 h3 {
-  grid-area: slideheading;
-  font-size: var(--font-size-2-3);
-}
+
 
 section.cols-2 .ldiv {
   grid-area: leftpanel;
@@ -1023,16 +1071,9 @@ section.cols-3 {
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 10% 90%;
   grid-template-areas:
     "slideheading slideheading slideheading"
     "leftpanel    middlepanel  rightpanel";
-}
-
-section.cols-3 h2,
-section.cols-3 h3 {
-  grid-area: slideheading;
-  font-size: var(--font-size-2-3);
 }
 
 section.cols-3 .ldiv {
@@ -1079,17 +1120,11 @@ section.cols-2-73 {
   display: grid;
   gap: 1rem;
   grid-template-columns: 70% 30%;
-  grid-template-rows: 10% 90%;
   grid-template-areas:
     "slideheading slideheading"
     "leftpanel    rightpanel";
 }
 
-section.cols-2-73 h2,
-section.cols-2-73 h3 {
-  grid-area: slideheading;
-  font-size: var(--font-size-2-3);
-}
 
 section.cols-2-73 .ldiv {
   grid-area: leftpanel;
@@ -1122,17 +1157,11 @@ section.cols-2-64 {
   display: grid;
   gap: 1rem;
   grid-template-columns: 60% 40%;
-  grid-template-rows: 10% 90%;
   grid-template-areas:
     "slideheading slideheading"
     "leftpanel    rightpanel";
 }
 
-section.cols-2-64 h2,
-section.cols-2-64 h3 {
-  grid-area: slideheading;
-  font-size: var(--font-size-2-3);
-}
 
 section.cols-2-64 .ldiv {
   grid-area: leftpanel;
@@ -1166,16 +1195,9 @@ section.cols-2-37 {
   display: grid;
   gap: 1rem;
   grid-template-columns: 30% 70%;
-  grid-template-rows: 10% 90%;
   grid-template-areas:
     "slideheading slideheading"
     "leftpanel    rightpanel";
-}
-
-section.cols-2-37 h2,
-section.cols-2-37 h3 {
-  grid-area: slideheading;
-  font-size: var(--font-size-2-3);
 }
 
 section.cols-2-37 .ldiv {
@@ -1209,17 +1231,11 @@ section.cols-2-46 {
   display: grid;
   gap: 1rem;
   grid-template-columns: 40% 60%;
-  grid-template-rows: 10% 90%;
   grid-template-areas:
     "slideheading slideheading"
     "leftpanel    rightpanel";
 }
 
-section.cols-2-46 h2,
-section.cols-2-46 h3 {
-  grid-area: slideheading;
-  font-size: var(--font-size-2-3);
-}
 
 section.cols-2-46 .ldiv {
   grid-area: leftpanel;
@@ -1252,7 +1268,7 @@ section.rows-2 {
   overflow: visible;
   display: grid;
   gap: 1rem;
-  grid-template-rows: 7% 45% 45%;
+  grid-template-rows: 45% 7% 45%;
   grid-template-columns: 100%;
   grid-template-areas:
     "slideheading"
@@ -1260,10 +1276,6 @@ section.rows-2 {
     "bottompanel";
 }
 
-section.rows-2 h2,
-section.rows-2 h3 {
-  grid-area: slideheading;
-}
 
 section.rows-2 .tdiv {
   grid-area: toppanel;
@@ -1291,7 +1303,7 @@ section.pin-3 {
   overflow: visible;
   display: grid;
   gap: 1rem;
-  grid-template-rows: 7% 42% 48%;
+  grid-template-rows: 42% 7% 48%;
   grid-template-columns: 50% 50%;
   grid-template-areas:
     "slideheading slideheading"
@@ -1559,6 +1571,7 @@ section.navbar header>em>strong {
 
 section.trans {
   background-color: var(--color-trans);
+  background-image: url("");
 }
 
 section.trans h2 {
@@ -1581,6 +1594,12 @@ table {
   word-break: initial;
   font-size: 0.8rem;
   margin: 0 auto;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+table .MathJax {
+  font-size: 0.8rem;
 }
 
 table code {
@@ -1589,7 +1608,7 @@ table code {
 
 th,
 thead {
-  height: 40px;
+  height: 30px;
   border-top: 3px solid var(--color-main);
   font-size: 105%;
   padding: 6px;
@@ -1597,7 +1616,11 @@ thead {
 
 th,
 thead:first-child {
-  border-bottom: 3px solid var(--color-main);
+  border-bottom: 1.5px solid var(--color-main);
+}
+
+table tr {
+  height: 30px;
 }
 
 table tr:nth-child(2n) {
